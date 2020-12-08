@@ -313,10 +313,9 @@ function startGame () {
 } // close function startGame
 
 // Define this function to look for a win condition:
-//
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
-function checkForWin () {
+function checkForWin (){
   // Define the checkForWin function. It should loop through all of board.cells.
   var totalNumberOfCells = board.cells.length;
   //var totalNumberOf_isMine = 0;
@@ -359,6 +358,6 @@ function countSurroundingMines (cell) {
     if (surroundingCells[i].isMine === true) {
       isMineTrueCounter ++;
     }
-  }
+  } // close for loop
   return isMineTrueCounter;
-}
+} // close function countSurroundingMines
