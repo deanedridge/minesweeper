@@ -315,38 +315,22 @@ function startGame () {
 // Define this function to look for a win condition:
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
-function checkForWin (){
-  // Define the checkForWin function. It should loop through all of board.cells.
-  var totalNumberOfCells = board.cells.length;
-  //var totalNumberOf_isMine = 0;
-  //var totalNumberOf_isMarked 0;
-  //   For each cell, check to see if both .isMine and .isMarked are true. If any mine still
-  // exists that isn't marked, the player hasn't won yet and you can return to exit out of the function.
-  for (i = 0; i < totalNumberOfCells; i++){
-
-    // if there are any cells containing mines, and any of then have the property isMarked 
-    // set to false, then return out of function
-    if ((board.cells[i].isMine === true) && (board.cells[i].isMarked === false)){
-      // game has not yet been won, so return out of function
-      return;
+function checkForWin() {
+  var minesThatAreMarked = 0;
+  var cellsThatAreCleared = 0;
+  var i =0;
+  while (i < board.cells.length) {
+    if (board.cells[i].isMarked == true && board.cells[i].isMine == true) {
+      minesThatAreMarked ++;
+    } else if (board.cells[i].hidden == false && board.cells[i].isMine == false) {
+      cellsThatAreCleared ++;
     }
-
-    // If every mine is marked, but there are still cells with the hidden property set to true, the 
-    // player hasn't won yet so lets return out of the function.
-    if (board.cells[i].hidden === true){
-      return;
-    }
-    
-    // If both these criteria pass, the player has won! There's a displayMessage 
-    // function call at the bottom of checkForWin you can use to tell them so.
-    if ((board.cells[i].isMine === true) && (board.cells[i].isMarked === true) && (board.cells[i].hidden === false)){
-      // You can use this function call to declare a winner (once you've
-      // detected that they've won, that is!)
-      //   lib.displayMessage('You win!')
-      lib.displayMessage('You win!')
-    }
-  } // close for loop
-} // close function checkForWin
+    i ++;
+  }// close while loop
+  if (minesThatAreMarked + cellsThatAreCleared == board.cells.length) {
+    lib.displayMessage('You have won!');
+  } // close if
+} // close function checkForWin()
 
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
